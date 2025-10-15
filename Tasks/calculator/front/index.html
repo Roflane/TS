@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../dist/index.js"></script>
+</head>
+
+<body>
+<label>
+    <a class="font-slider-text">Font size changer</a>
+    <input class="font-slider" type="range" value="0" min="5" max="30" step="0.5" onchange="change_font_size()">
+</label>
+
+<div class="calc-root">
+    <div class="display">
+        <span class="result" id="res">0</span>
+    </div>
+    <div class="tiles">
+        <button class="clear" value="C" onclick="clear_result(this)">C</button>
+        <button class="percent" value="%" onclick="push_element_to_display(this)">％</button>
+        <button class="division" value="/" onclick="push_element_to_display(this)">÷</button>
+
+        <button value="7" onclick="push_element_to_display(this)">7</button>
+        <button value="8" onclick="push_element_to_display(this)">8</button>
+        <button value="9" onclick="push_element_to_display(this)">9</button>
+        <button class="star" value="*" onclick="push_element_to_display(this)">×</button>
+
+        <button value="4" onclick="push_element_to_display(this)">4</button>
+        <button value="5" onclick="push_element_to_display(this)">5</button>
+        <button value="6" onclick="push_element_to_display(this)">6</button>
+
+        <button class="minus" value="-" onclick="push_element_to_display(this)">─</button>
+        <button value="1" onclick="push_element_to_display(this)">1</button>
+
+        <button value="2" onclick="push_element_to_display(this)">2</button>
+        <button value="3" onclick="push_element_to_display(this)">3</button>
+
+        <button class="plus" value="+" onclick="push_element_to_display(this)">+</button>
+        <button class="zero" value="0" onclick="push_element_to_display(this)">0</button>
+        <button value="." onclick="push_element_to_display(this)">.</button>
+        <button class="equal" value="=" onclick="calculate_result()">=</button>
+    </div>
+</div>
+</body>
+
+</html>
