@@ -1,122 +1,123 @@
 class CssObject {
-    #selector: string = '';
-    #styleDict: Record<string, string> = {};
-    element: string;
-    dict: Record<string, string>;
+    private selector: string = '';
+    private styleDict: Record<string, string> = {};
+    private readonly element: string;
+    private dict: Record<string, string>;
 
     constructor(element: string, dict: Record<string, string> = {}) {
         this.element = element;
         this.dict = dict;
-        this.#selector = `${element} {\n`;
+        this.selector = `${element} {\n`;
     }
 
-    set_style(pair: Record<string, string>): boolean {
+    public set_style(pair: Record<string, string>): boolean {
         const key = Object.keys(pair)[0];
-        const v = Object.values(pair)[0];
-        this.#styleDict[key] = v;
+        this.styleDict[key] = Object.values(pair)[0];
         return true;
     }
 
-    remove_style(pair: Record<string, string>): boolean {
+    public remove_style(pair: Record<string, string>): boolean {
         const key = Object.keys(pair)[0];
-        delete this.#styleDict[key];
+        delete this.styleDict[key];
         return true;
     }
 
-    get_css(): string {
+    public get_css(): string {
         let css = `${this.element} {\n`;
-        for (const [key, value] of Object.entries(this.#styleDict)) {
+        for (const [key, value] of Object.entries(this.styleDict)) {
             css += `  ${key}: ${value};\n`;
         }
         css += `}\n`;
         return css;
     }
 
-    get_style(): Record<string, string> {
-        return this.#styleDict;
+    public get_style(): Record<string, string> {
+        return this.styleDict;
     }
 
-    get_style_count(): number {
-        return Object.keys(this.#styleDict).length;
+    public get_style_count(): number {
+        return Object.keys(this.styleDict).length;
     }
 }
 
 class HtmlObject {
-    #tag: string = '';
-    #self_closing: boolean = false;
-    #attributes: Record<string, string> = {};
-    #inner: string = '';
+    private readonly tag: string = '';
+    private self_closing: boolean = false;
+    private attributes: Record<string, string> = {};
+    private inner: string = '';
 
     constructor(tag: string, self_closing: boolean = false) {
-        this.#tag = tag;
-        this.#self_closing = self_closing;
+        this.tag = tag;
+        this.self_closing = self_closing;
     }
 
-    set_inner(...content: (HtmlObject | string)[]): this {
-        this.#inner = `    ${content
+    public set_inner(...content: (HtmlObject | string)[]): HtmlObject {
+        this.inner = `    ${content
             .map(c => c instanceof HtmlObject ? c.get_html() : c)
             .join('')}`;
         return this;
     }
 
-    append_child(child: HtmlObject | string): void {
-        if (this.#self_closing) return;
+    public append_child(child: HtmlObject | string): void {
+        if (this.self_closing) return;
         if (child instanceof HtmlObject)
-            this.#inner += child.get_html();
-        else
-            this.#inner += child;
+            this.inner += child.get_html();
+        else this.inner += child;
     }
 
-    set_attribute(attribute: Record<string, string>): void {
+    public set_attribute(attribute: Record<string, string>): void {
         const key = Object.keys(attribute)[0];
-        const v = Object.values(attribute)[0];
-        this.#attributes[key] = v;
+        this.attributes[key] = Object.values(attribute)[0];
     }
 
-    #build_open_tag(): string {
-        const attrs = Object.entries(this.#attributes)
+    public build_open_tag(): string {
+        const attrs = Object.entries(this.attributes)
             .map(([k, v]) => `${k}="${v}"`)
             .join(' ');
-        return attrs.length > 0 ? `<${this.#tag} ${attrs}>` : `<${this.#tag}>`;
+        return attrs.length > 0 ? `<${this.tag} ${attrs}>` : `<${this.tag}>`;
     }
 
-    get_html(new_line: boolean = false): string {
-        if (this.#self_closing) return `<${this.#tag} />`;
-        const open = this.#build_open_tag();
-        const close = `</${this.#tag}>`;
+    public get_html(new_line: boolean = false): string {
+        if (this.self_closing) return `<${this.tag} />`;
+        const open = this.build_open_tag();
+        const close = `</${this.tag}>`;
         return new_line
-            ? `${open}\n${this.#inner}\n${close}`
-            : `${open}${this.#inner}${close}`;
+            ? `${open}\n${this.inner}\n${close}`
+            : `${open}${this.inner}${close}`;
     }
 }
 
 class ExtendedDate extends Date {
-    to_readable_string(): string {
-        let result = '';
-        const day = this.getDate();
-        if (day === 1) result += '1st ';
-        else if (day === 2) result += '2nd ';
-        else if (day === 3) result += '3rd ';
-        else result += `${day}th `;
+    public to_readable_string(date: number, month: number) {
+        let result: string = ''
 
-        switch (this.getMonth() + 1) {
-            case 1: result += 'of January'; break;
-            case 2: result += 'of February'; break;
-            case 3: result += 'of March'; break;
-            case 4: result += 'of April'; break;
-            case 5: result += 'of May'; break;
-            case 6: result += 'of June'; break;
-            case 7: result += 'of July'; break;
-            case 8: result += 'of August'; break;
-            case 9: result += 'of September'; break;
-            case 10: result += 'of October'; break;
-            case 11: result += 'of November'; break;
-            case 12: result += 'of December'; break;
+        const day: number = date;
+        if (day === 1) {
+            result = result.concat('1st ');
+        } else if (day === 2) {
+            result = result.concat('2nd ');
+        } else if (day === 3) {
+            result = result.concat('3rd ');
+        } else result = result.concat(`${day}th `);
+
+        const pair: { [key: string]: string } = {
+            1: "of January",
+            2: "of February",
+            3: "of March",
+            4: "of April",
+            5: "of May",
+            6: "of June",
+            7: "of July",
+            8: "of August",
+            9: "of September",
+            10: "of October",
+            11: "of November",
+            12: "of December",
         }
-        return result;
+        return result.concat(pair[month.toString()]);
     }
 
-    is_future(date: number, month: number, year: number): boolean {
+    public is_future(date: number, month: number, year: number): boolean {
         const currentDate = this.getDate();
         const currentMonth = this.getMonth() + 1;
         const currentYear = this.getFullYear();
@@ -128,18 +129,22 @@ class ExtendedDate extends Date {
         return date > currentDate;
     }
 
-    is_leap_year(year: number): boolean {
+    public is_leap_year(year: number): boolean {
         return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
     }
 }
 
+
 function test_css_object(): void {
     const css = new CssObject("p");
-    const colorWhite = { color: "white" };
+    const colorWhite = {
+        position: "absolute",
+        color: "white",
+    };
 
     if (css.set_style(colorWhite)) console.log(`Style is set successfully`);
     console.log(css.get_style_count());
-    if (css.remove_style(colorWhite)) console.log(`Style is removed successfully`);
+    // if (css.remove_style(colorWhite)) console.log(`Style is removed successfully`);
     console.log(css.get_css());
     console.log(css.get_style_count());
 }
@@ -209,7 +214,7 @@ function test_html_object(): void {
 
 function test_extended_date(): void {
     const date = new ExtendedDate();
-    console.log(date.to_readable_string());
+    console.log(date.to_readable_string(date.getDate(), date.getMonth()));
     console.log(date.is_future(9, 10, 2025));
     console.log(date.is_leap_year(2020));
 }
