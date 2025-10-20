@@ -1,0 +1,67 @@
+.button1 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    background: rgb(154, 48, 70); 
+}
+
+.matrix {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);  
+}
+
+.matrix, th, td {
+    border: 1px solid black;
+}
+
+.github, .github-tooltip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2); 
+}
+
+.github-tooltip {
+    visibility: hidden;
+    top: 45%;
+    transform: translate(-50%, -50%) scale(1); 
+    
+}
+
+
+
+.context-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #2e2e2e;
+
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 6px 0;
+    width: 180px;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
+}
+
+.context-menu.visible {
+    visibility: visible;
+    pointer-events: all;
+    opacity: 1;
+}
+
+.context-menu li {
+    list-style: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    color: white;
+}
+
+
+.context-menu li:hover {
+    background: #3a3a3a;
+}
