@@ -1,5 +1,5 @@
-function setElementColor(ele, color: string) {
-  ele.style.backgroundColor = color;
+function setElementColor(ele: HTMLElement, color: string) {
+    ele.style.backgroundColor = color;
 }
 
 function setTooltipVisibility(id: string, status: string) {
@@ -15,12 +15,13 @@ function setTooltipVisibility(id: string, status: string) {
 function contextMenu() {
     const menu = document.querySelector<HTMLElement>("#context-menu");
     let x = 0, y = 0;
+    if (menu == null) return;
 
     document.addEventListener('mousemove', (e) => {
         x = e.clientX;
         y = e.clientY;
-    }); 
-    
+    });
+
     document.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         menu.style.visibility = 'visible';
@@ -35,11 +36,11 @@ function contextMenu() {
     option1?.addEventListener('click', () => {
         document.body.classList.toggle('light');
         if (document.body.classList.contains('light')) {
-          document.body.style.background = '#fff';
-          document.body.style.color = '#000';
+            document.body.style.background = '#fff';
+            document.body.style.color = '#000';
         } else {
-          document.body.style.background = '#1e1e1e';
-          document.body.style.color = '#fff';
+            document.body.style.background = '#1e1e1e';
+            document.body.style.color = '#fff';
         }
         menu.classList.remove('visible');
     });
@@ -47,18 +48,17 @@ function contextMenu() {
 
 
 function virtualKeyboard() {
-     document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (e) => {
         const key = document.querySelector(`.key[data-key="${e.code}"]`);
         if (key) key.classList.add('active');
-      });
+    });
 
-      document.addEventListener('keyup', (e) => {
+    document.addEventListener('keyup', (e) => {
         const key = document.querySelector(`.key[data-key="${e.code}"]`);
         if (key) key.classList.remove('active');
-      });
+    });
 }
 
 (() => {
-    contextMenu(); 
-
+    contextMenu();
 })()
