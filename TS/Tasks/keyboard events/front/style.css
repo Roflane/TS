@@ -31,8 +31,6 @@
     
 }
 
-
-
 .context-menu {
     position: fixed;
     top: 0;
@@ -64,4 +62,9 @@
 
 .context-menu li:hover {
     background: #3a3a3a;
+}
+
+.page-wrapper {
+    position: absolute;
+    top: 20%;
 }

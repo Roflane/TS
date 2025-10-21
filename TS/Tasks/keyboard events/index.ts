@@ -11,7 +11,6 @@ function setTooltipVisibility(id: string, status: string) {
     tooltip.style.visibility = status;
 }
 
-
 function contextMenu() {
     const menu = document.querySelector<HTMLElement>("#context-menu");
     let x = 0, y = 0;
@@ -45,7 +44,6 @@ function contextMenu() {
         menu.classList.remove('visible');
     });
 }
-
 
 function virtualKeyboard() {
     document.addEventListener('keydown', (e) => {
