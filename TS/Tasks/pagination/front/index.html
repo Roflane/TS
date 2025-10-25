@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+      <meta charset="utf-8">
+      <title>Sandbox</title>
+      <link rel="stylesheet" href="style.css"/>
+      <script src="../dist/index.js" defer></script>
+  </head>
+
+  <body>
+
+  <h2 class="header-search">Search</h2>
+
+  <div class="search-container">
+
+      <div class="label-group">
+          <span><b>Title:</b></span>
+          <input type="text" class="input-title" id="title-data">
+      </div>
+
+      <div class="label-group">
+          <span><b>Type:</b></span>
+          <select class="input-type" id="type-data">
+              <option value="1">Movie</option>
+              <option value="2">Series</option>
+              <option value="3">Episode</option>
+          </select>
+      </div>
+
+      <button class="button-search" id="search-button">Search</button>
+  </div>
+
+  <div class="books-wrapper">
+      <div class="books-container">
+          <img class="book-image" alt="No image"/>
+          <a class="book-type"></a>
+          <a class="book-title"></a>
+          <a class="book-year"></a>
+          <button class="button-details" id="button-details1">Details</button>
+      </div>
+
+      <div class="books-container">
+          <img class="book-image" alt="No image"/>
+          <a class="book-type"></a>
+          <a class="book-title"></a>
+          <a class="book-year"></a>
+          <button class="button-details" id="button-details2">Details</button>
+      </div>
+
+      <div class="books-container">
+          <img class="book-image" alt="No image"/>
+          <a class="book-type"></a>
+          <a class="book-title"></a>
+          <a class="book-year"></a>
+          <button class="button-details" id="button-details3">Details</button>
+      </div>
+  </div>
+
+
+  <div class="pagination">
+      <button id="prev-page">Prev</button>
+      <span id="page-label">Page 1</span>
+      <button id="next-page">Next</button>
+  </div>
+  </body>
+</html>
