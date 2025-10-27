@@ -1,6 +1,6 @@
 function regex(): void {
-    const numberAz = new RegExp("^\\+994(50|51|55|70|77)\\d{7}$");
-    console.log(numberAz.exec("+994504441122"));
+    const number = new RegExp("^\\+994(50|51|55|70|77)\\d{7}$");
+    console.log(number.exec("+994504441122"));
 
     const floatingNumber = new RegExp("^\\d+([.,]\\d+)?$");
     console.log(floatingNumber.exec("89123891839,30910103"));
