@@ -1,0 +1,36 @@
+body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lavender;
+}
+
+.dot, .dot-plus {
+    height: 25px;
+    width: 25px;
+    grid-template-columns: repeat(10, 60px);
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-plus {
+    padding-top: 3px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.selected {
+    border: 1px solid red;
+}
+
+.color-text, .input-color-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid gray;
+}
+
+.input-color-text {
+    top: 45%;
+    border: none;
+}
