@@ -1,0 +1,41 @@
+body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lavender;
+}
+
+.buttons-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.buttons-wrapper button {
+    border: 1px solid #4CAAC8;
+    border-radius: 50%;
+    height: 80%;
+}
+.buttons-wrapper button:hover {
+    background-color: #2C2C2C;
+}
+.buttons-wrapper img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.image-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    font-size: 120%;
+}
