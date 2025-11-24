@@ -1,6 +1,6 @@
 let currentPage = 1;
 let totalPages = 1;
-let secret: string = '';
+let secret: string = "9a447a4d";
 
 function createPopupWindow(item: any) {
     if (document.querySelector(".window-overlay")) return;
